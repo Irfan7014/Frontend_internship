@@ -10,7 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Frontend_internship">
         <activity
+            android:name=".LoginPage"
+            android:exported="false" />
+        <activity
             android:name=".SignUp"
+            android:exported="false" />
+        <activity
+            android:name=".HomePage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
