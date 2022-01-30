@@ -43,7 +43,6 @@ public class HomePage extends AppCompatActivity {
             finish();
             startActivity(intent);
         }
-        Toast.makeText(HomePage.this,"User Already SignedUp",Toast.LENGTH_SHORT).show();
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +108,6 @@ public class HomePage extends AppCompatActivity {
                             Intent intent = new Intent(getApplicationContext(),HomePage2.class);
                             startActivity(intent);
                             finish();
-                            Toast.makeText(HomePage.this,"Signed Up",Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(HomePage.this,"Error Signing Up",Toast.LENGTH_SHORT).show();
                         }

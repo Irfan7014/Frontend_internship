@@ -84,6 +84,7 @@ public class SignUp extends AppCompatActivity {
                     ePassword.setError("-The Password must be of 8 to 20 characters in length\n-must contain one digit, one uppercase character and one lowercase character\n-must contain one special character {!@#$%&*()-+=^}");
                     return;
                 }
+                firebaseAuthWithEmail();
             }
         });
         bContinueGoogle.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +95,26 @@ public class SignUp extends AppCompatActivity {
             }
         });
     }
+
+    private void firebaseAuthWithEmail() {
+        String email = eEmail.getText().toString().trim();
+        String passwrd = ePassword.getText().toString().trim();
+        mAuth.createUserWithEmailAndPassword(email,passwrd)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Intent intent = new Intent(getApplicationContext(),HomePage2.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                        else{
+                            Toast.makeText(SignUp.this,"Registration failed",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
     private boolean isValidEmail(CharSequence email) {
         if (!TextUtils.isEmpty(email)) {
             return Patterns.EMAIL_ADDRESS.matcher(email).matches();

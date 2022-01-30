@@ -1,15 +1,19 @@
 package com.example.frontend_internship;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -26,7 +30,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LoginPage extends AppCompatActivity {
-    private Button bLoginGoogle;
+    private Button bLoginGoogle,bLogin;
+    private EditText eLoginEmail,eLoginPassword,forgotEmail;
+    private TextView tvForgotPasswrd;
     FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
     private String TAG="Google_Login";
@@ -42,7 +48,6 @@ public class LoginPage extends AppCompatActivity {
             finish();
             startActivity(intent);
         }
-        Toast.makeText(LoginPage.this,"User Already SignedUp",Toast.LENGTH_SHORT).show();
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,17 +56,77 @@ public class LoginPage extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Login");
         bLoginGoogle = (Button)findViewById(R.id.btnLoginGoogle);
+        bLogin = (Button)findViewById(R.id.btnLogin);
+        eLoginEmail = (EditText)findViewById(R.id.etLoginEmail);
+        eLoginPassword = (EditText)findViewById(R.id.etLoginPassword);
+        tvForgotPasswrd = (TextView)findViewById(R.id.tvForgotPass);
         mAuth = FirebaseAuth.getInstance();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        tvForgotPasswrd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(LoginPage.this);
+                builder.setTitle("Forgot Password");
+                builder.setMessage("Enter Email Address");
+                forgotEmail = new EditText(LoginPage.this);
+                builder.setView(forgotEmail);
+                builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String fEmail = forgotEmail.getText().toString().trim();
+                        Toast.makeText(getApplicationContext(),fEmail,Toast.LENGTH_SHORT).show();
+                        FirebaseAuth.getInstance().sendPasswordResetEmail(fEmail)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Log.d(TAG, "Email sent.");
+                                        }
+                                    }
+                                });
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                AlertDialog ad=builder.create();
+                ad.show();
+
+            }
+        });
         bLoginGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent signInIntent = mGoogleSignInClient.getSignInIntent();
                 startActivityForResult(signInIntent, RC_SIGN_IN);
+            }
+        });
+        bLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email = eLoginEmail.getText().toString().trim();
+                String passwrd = eLoginPassword.getText().toString().trim();
+                mAuth.signInWithEmailAndPassword(email, passwrd)
+                        .addOnCompleteListener(LoginPage.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if(task.isSuccessful()){
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    Intent intent = new Intent(getApplicationContext(),HomePage2.class);
+                                    startActivity(intent);
+                                }
+                                else{
+                                    Toast.makeText(LoginPage.this,"Error Loging In",Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
             }
         });
     }
@@ -103,7 +168,6 @@ public class LoginPage extends AppCompatActivity {
                             Intent intent = new Intent(getApplicationContext(),HomePage2.class);
                             startActivity(intent);
                             finish();
-                            Toast.makeText(LoginPage.this,"Signed Up",Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(LoginPage.this,"Error Signing Up",Toast.LENGTH_SHORT).show();
                         }

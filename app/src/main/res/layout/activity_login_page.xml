@@ -51,7 +51,7 @@
         app:layout_constraintVertical_bias="0.100" />
 
     <EditText
-        android:id="@+id/etPassword"
+        android:id="@+id/etLoginPassword"
         android:layout_width="272dp"
         android:layout_height="46dp"
         android:layout_marginTop="18dp"
@@ -81,7 +81,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword"
+        app:layout_constraintTop_toBottomOf="@+id/etLoginPassword"
         app:layout_constraintVertical_bias="0.048" />
 
     <Button
