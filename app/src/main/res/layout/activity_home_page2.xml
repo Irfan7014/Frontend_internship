@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomePage2">
+
+    <Button
+        android:id="@+id/btnFindLocation"
+        android:layout_width="225dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/pista"
+        android:text="My Location"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        android:fontFamily="sans-serif"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.308" />
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="225dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="244dp"
+        android:text="Logout"
+        android:textSize="17dp"
+        android:backgroundTint="@color/light_purple"
+        android:textColor="@color/black"
+        android:fontFamily="sans-serif"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnFindLocation"
+        app:layout_constraintVertical_bias="0.167" />
+</androidx.constraintlayout.widget.ConstraintLayout>

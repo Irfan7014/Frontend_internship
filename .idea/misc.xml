@@ -4,12 +4,17 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Internship/app/src/main/res/layout/activity_home_page.xml" value="0.264" />
+        <entry key="..\:/Internship/app/src/main/res/layout/activity_home_page2.xml" value="0.20108695652173914" />
         <entry key="..\:/Internship/app/src/main/res/layout/activity_login_page.xml" value="0.25416666666666665" />
-        <entry key="..\:/Internship/app/src/main/res/layout/activity_sign_up.xml" value="0.24010416666666667" />
+        <entry key="..\:/Internship/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
+        <entry key="..\:/Internship/app/src/main/res/layout/ic_launcher_applogo_background.xml" value="0.11302083333333333" />
+        <entry key="..\:/Internship/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.124" />
+        <entry key="..\:/Internship/app/src/main/res/mipmap-anydpi-v26/ic_launcher_applogo.xml" value="0.124" />
+        <entry key="..\:/Internship/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.124" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

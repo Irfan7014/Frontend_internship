@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Frontend_internship">
-
+        <activity
+            android:name=".HomePage2"
+            android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
