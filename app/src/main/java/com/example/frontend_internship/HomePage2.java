@@ -43,7 +43,8 @@ public class HomePage2 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Todo
-
+                Intent intent = new Intent(getApplicationContext(),MyLocation.class);
+                startActivity(intent);
             }
         });
     }
